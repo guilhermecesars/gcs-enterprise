@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema Varandas: aplicativo desktop em Java/JavaFX para controle de pedidos e impressão de comprovantes de um restaurante real.">
+  <meta property="og:title" content="Sistema Varandas — GCs Enterprise">
+  <meta property="og:description" content="Aplicativo desktop em Java/JavaFX para controle de pedidos e impressão de comprovantes de um restaurante real.">
+  <meta property="og:image" content="../social-preview.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../logo-icon.png" type="image/png">
+  <title>Sistema Varandas — GCs Enterprise</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="../index.html" class="logo" aria-label="GCs Enterprise — Início">
+        <img src="../logo-header.png" alt="GCs Enterprise" class="logo-mark">
+      </a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav">
+        <a href="../index.html">Início</a>
+        <a href="../sobre.html">Sobre</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="../index.html#servicos" class="breadcrumb">← Voltar para serviços</a>
+
+    <section class="case-header">
+      <h1>Sistema Varandas</h1>
+      <p class="status">Pronto — aguardando teste piloto</p>
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">JavaFX</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Impressão Térmica</span>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">Capturas de tela</p>
+      <div class="carousel">
+        <div class="carousel-track">
+          <figure class="carousel-slide">
+            <img src="varandas/tela-inicial.jpg" alt="Tela inicial do Sistema Varandas, com os botões Novo Pedido, Relatório do Dia e Sair">
+            <figcaption>Tela inicial</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <img src="varandas/tela-novo-pedido.jpg" alt="Tela de novo pedido, com o cardápio do restaurante e o resumo do pedido em branco">
+            <figcaption>Novo pedido — cardápio e resumo</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <img src="varandas/tela-pedido-preenchido.jpg" alt="Pedido montado com itens, total calculado e forma de pagamento selecionada">
+            <figcaption>Pedido montado, com total e pagamento</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <img src="varandas/tela-pedido-salvo.jpg" alt="Mensagem de confirmação: pedido salvo com sucesso">
+            <figcaption>Confirmação de pedido salvo</figcaption>
+          </figure>
+          <figure class="carousel-slide">
+            <img src="varandas/tela-relatorio.jpg" alt="Relatório do dia com totais por forma de pagamento e lista de pedidos">
+            <figcaption>Relatório do dia</figcaption>
+          </figure>
+        </div>
+        <button type="button" class="carousel-btn carousel-prev" aria-label="Slide anterior">‹</button>
+        <button type="button" class="carousel-btn carousel-next" aria-label="Próximo slide">›</button>
+        <div class="carousel-dots"></div>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">O problema</p>
+      <p>
+        O Varandas, um restaurante de verdade, controlava pedidos, clientes e formas de
+        pagamento no papel e em planilha solta — sem histórico organizado e sem um jeito
+        rápido de emitir o comprovante do pedido pro cliente no balcão.
+      </p>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">A solução</p>
+      <p>
+        Um sistema desktop em Java com interface em JavaFX e persistência em SQLite.
+        Cadastra e busca clientes, monta pedidos com os itens reais do cardápio do
+        restaurante (marmitas em diferentes tamanhos, pratos feitos), registra a forma de
+        pagamento, gera relatórios e imprime o comprovante direto na impressora térmica do
+        balcão.
+      </p>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">Como construímos</p>
+      <p>
+        Começamos simples — um menu interativo no terminal, com persistência em arquivo,
+        só pra validar a lógica de cadastro de clientes e pedidos. Depois de confirmar que
+        a lógica de negócio fazia sentido, migramos a persistência pra SQLite e construímos
+        a interface gráfica em JavaFX. A parte mais delicada foi a impressão térmica —
+        enviar os comandos ESC/POS certos pra impressora se comportar como num sistema de
+        PDV comercial. No fim, empacotamos tudo num instalador Windows com o runtime Java
+        embutido, pensando em facilitar a instalação pra quem não sabe o que é Java.
+      </p>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">Status</p>
+      <p>
+        O sistema está pronto e empacotado, mas ainda não passou por um teste real na
+        cozinha do Varandas — esse é o próximo passo antes de oferecer como produto
+        fechado pra outros negócios.
+      </p>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="case-label">Quer um sistema assim pro seu negócio?</p>
+      <p>
+        Construímos sistemas de gestão sob medida pro seu fluxo de trabalho — não um
+        software genérico que sobra funcionalidade e falta o que você realmente precisa.
+      </p>
+      <p>
+        <a href="https://wa.me/5511976035867?text=Quero%20um%20sistema%20sob%20medida%20pro%20meu%20neg%C3%B3cio" target="_blank" rel="noopener" class="case-cta">Falar no WhatsApp →</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="https://wa.me/5511976035867" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:guyoko@gmail.com">guyoko@gmail.com</a>
+      <p>&copy; 2026 GCs Enterprise</p>
+    </div>
+  </footer>
+
+  <script src="../scripts.js" defer></script>
+</body>
+</html>
