@@ -341,6 +341,39 @@ section > h2 {
   outline: none;
 }
 
+/* preco / promocao */
+.price-badge {
+  display: inline-block;
+  font-family: "Fira Code", monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 0 12px;
+}
+
+.price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 20px;
+  flex-wrap: wrap;
+}
+
+.price-old {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 1.1rem;
+}
+
+.price-new {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
 /* contato */
 .contato-card {
   border-radius: 18px;
@@ -572,6 +605,10 @@ section > h2 {
 
 .projects-grid .project-card:nth-child(3) {
   transition-delay: 0.2s;
+}
+
+.projects-grid .project-card:nth-child(4) {
+  transition-delay: 0.3s;
 }
 
 /* animations */
