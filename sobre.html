@@ -17,7 +17,7 @@
   <header class="site-header">
     <div class="container nav-bar">
       <a href="index.html" class="logo" aria-label="GCs Enterprise — Início">
-        <img src="logo-header.png" alt="GCs Enterprise" class="logo-mark">
+        <img src="logo-header.png" alt="GCs Enterprise" class="logo-mark" width="400" height="108" fetchpriority="high">
       </a>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
         <span></span><span></span><span></span>
@@ -37,7 +37,10 @@
     </section>
 
     <section class="about-layout reveal">
-      <img src="imagemM.png" alt="Foto de Guilherme Cesar, fundador da GCs Enterprise" class="profile-photo">
+      <picture>
+        <source srcset="imagemM.webp" type="image/webp">
+        <img src="imagemM.png" alt="Foto de Guilherme Cesar, fundador da GCs Enterprise" class="profile-photo" width="550" height="731">
+      </picture>
       <div class="about-text">
         <p>
           A GCs Enterprise nasceu de um jeito direto de resolver problema: em vez de vender
