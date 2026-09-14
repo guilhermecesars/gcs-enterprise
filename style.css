@@ -466,9 +466,13 @@ section > h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  counter-reset: project-count;
 }
 
 .project-card {
+  position: relative;
+  overflow: hidden;
+  counter-increment: project-count;
   background: var(--bg-card);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -478,6 +482,31 @@ section > h2 {
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card::before {
+  content: "0" counter(project-count);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(280px circle at var(--x, 50%) var(--y, 50%), rgba(16, 185, 129, 0.14), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::after {
+  opacity: 1;
 }
 
 .project-card:hover {
@@ -490,15 +519,71 @@ section > h2 {
   transition: opacity 0.6s ease, transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.project-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  background: var(--accent-soft);
+  border-radius: 10px;
+  margin: 0 0 16px;
+}
+
 .project-card h3 {
   margin: 0 0 6px;
   font-size: 1.2rem;
+  padding-right: 32px;
 }
 
 .project-card .status {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-size: 0.8rem;
   color: var(--text-muted);
   margin: 0 0 12px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.status-old {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.project-card-featured .status {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.project-card-featured {
+  padding-top: 46px;
+}
+
+.ribbon {
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  background: var(--accent);
+  color: #06231a;
+  font-family: "Fira Code", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 12px 4px 16px;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.5);
 }
 
 .tags {
