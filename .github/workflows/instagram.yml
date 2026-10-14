@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: publicar-instagram
@@ -31,7 +32,17 @@ jobs:
           IG_API_HOST: ${{ vars.IG_API_HOST }}
           IG_API_VERSION: ${{ vars.IG_API_VERSION }}
           DRY_RUN: ${{ inputs.teste && '1' || '' }}
+          AVISO_ARQUIVO: ${{ runner.temp }}/aviso.md
         run: python3 publicacao/publicar.py
+
+      - name: Avisar por e-mail (comentario na issue #4)
+        if: always() && !inputs.teste
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AVISO: ${{ runner.temp }}/aviso.md
+        run: |
+          [ -s "$AVISO" ] || exit 0
+          gh issue comment 4 --repo "$GITHUB_REPOSITORY" --body-file "$AVISO"
 
       - name: Salvar o que foi publicado
         if: always()
