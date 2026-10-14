@@ -41,6 +41,14 @@ VERSAO = os.environ.get("IG_API_VERSION") or "v23.0"
 TOKEN = os.environ.get("IG_ACCESS_TOKEN", "")
 USUARIO = os.environ.get("IG_USER_ID", "")
 TESTE = os.environ.get("DRY_RUN") == "1"
+# Linhas do aviso por e-mail (o workflow comenta na issue "Publicacoes do Instagram").
+AVISO = os.environ.get("AVISO_ARQUIVO", "")
+avisos = []
+
+
+def avisar(linha):
+    print(linha)
+    avisos.append(linha)
 
 
 def api(metodo, caminho, params):
@@ -88,6 +96,13 @@ def publicar(post):
     return api("POST", f"{USUARIO}/media_publish", {"creation_id": container})["id"]
 
 
+def link(media_id):
+    try:
+        return api("GET", media_id, {"fields": "permalink"}).get("permalink", "")
+    except RuntimeError:
+        return ""
+
+
 def main():
     if not os.path.exists(AGENDA):
         print("Sem publicacao/agenda.csv: nada a fazer.")
@@ -95,6 +110,15 @@ def main():
     if not (TOKEN and USUARIO) and not TESTE:
         print("Segredos IG_ACCESS_TOKEN / IG_USER_ID nao configurados: nada a fazer.")
         return 0
+
+    if TESTE and TOKEN and USUARIO:
+        # Confere a credencial sem publicar nada.
+        try:
+            conta = api("GET", USUARIO, {"fields": "username"})
+            print(f"Credencial OK: conta @{conta.get('username')} (id {conta.get('id')})")
+        except RuntimeError as e:
+            print(f"ERRO na credencial: {e}")
+            return 1
 
     estado = {}
     if os.path.exists(ESTADO):
@@ -114,11 +138,11 @@ def main():
             continue
         if agora - quando > JANELA:
             estado[pid] = {"status": "pulado", "motivo": "horario passou", "em": agora.isoformat()}
-            print(f"PULADO {pid}: era para {quando:%d/%m %H:%M}")
+            avisar(f"⏭️ {pid} pulado: era para {quando:%d/%m %H:%M} e passou do horário")
             continue
         if not os.path.exists(os.path.join(REPO, post["midia"].lstrip("/"))):
             falhas += 1
-            print(f"ERRO {pid}: midia nao encontrada no repositorio: {post['midia']}")
+            avisar(f"❌ {pid}: mídia não encontrada no repositório ({post['midia']})")
             continue
         if TESTE:
             print(f"[teste] publicaria {pid} ({post['tipo']}) de {quando:%d/%m %H:%M}")
@@ -127,11 +151,14 @@ def main():
             media_id = publicar(post)
         except Exception as e:  # tenta de novo na proxima execucao, dentro da janela
             falhas += 1
-            print(f"ERRO {pid}: {e}")
+            avisar(f"❌ {pid} não foi publicado (tenta de novo em 15 min): {e}")
             continue
         estado[pid] = {"status": "publicado", "media_id": media_id, "em": agora.isoformat()}
-        print(f"PUBLICADO {pid} -> {media_id}")
+        avisar(f"✅ {pid} publicado. {link(media_id)}".rstrip())
 
+    if AVISO and avisos:
+        with open(AVISO, "w", encoding="utf-8") as f:
+            f.write("\n\n".join(avisos) + "\n")
     if not TESTE:
         with open(ESTADO, "w", encoding="utf-8") as f:
             json.dump(estado, f, ensure_ascii=False, indent=2, sort_keys=True)
