@@ -96,6 +96,15 @@ def main():
         print("Segredos IG_ACCESS_TOKEN / IG_USER_ID nao configurados: nada a fazer.")
         return 0
 
+    if TESTE and TOKEN and USUARIO:
+        # Confere a credencial sem publicar nada.
+        try:
+            conta = api("GET", USUARIO, {"fields": "username"})
+            print(f"Credencial OK: conta @{conta.get('username')} (id {conta.get('id')})")
+        except RuntimeError as e:
+            print(f"ERRO na credencial: {e}")
+            return 1
+
     estado = {}
     if os.path.exists(ESTADO):
         with open(ESTADO, encoding="utf-8") as f:
