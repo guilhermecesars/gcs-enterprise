@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#040908">
   <meta name="description" content="GCs Enterprise — automação de atendimento via WhatsApp e sistemas de software sob medida pro seu negócio.">
   <meta property="og:title" content="GCs Enterprise — Innovations in Software and Systems">
   <meta property="og:description" content="Automação de atendimento via WhatsApp e sistemas de software sob medida pro seu negócio.">
@@ -11,138 +12,236 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="logo-icon.png" type="image/png">
   <title>GCs Enterprise — Software sob medida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+  <div class="progress" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="cursor-ring" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
+
   <header class="site-header">
-    <div class="container nav-bar">
+    <div class="nav-bar">
       <a href="index.html" class="logo" aria-label="GCs Enterprise — Início">
-        <img src="logo-header.png" alt="GCs Enterprise" class="logo-mark" width="400" height="108" fetchpriority="high">
+        <img src="logo-icon.png" alt="" width="30" height="32"><span>GCs <b>Enterprise</b></span>
       </a>
-      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="mainNav">
-        <a href="index.html">Início</a>
+      <nav class="main-nav" id="mainNav" aria-label="Principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#cases">Cases</a>
+        <a href="#metodo">Método</a>
         <a href="sobre.html">Sobre</a>
         <a href="#contato">Contato</a>
       </nav>
+      <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="nav-cta">Falar no WhatsApp</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main">
     <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Software sob medida</p>
-        <h1>Soluções de software que resolvem problemas reais do seu negócio</h1>
-        <p class="lead">
-          Automatizamos atendimento, organizamos pedidos e construímos sistemas sob medida —
-          sem pacote fechado que não serve pro seu negócio, sem enrolação.
-        </p>
-        <p class="hero-cta">
-          <a href="#servicos" class="btn-primary">Ver serviços ↓</a>
-          <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="btn-secondary">Falar no WhatsApp</a>
-        </p>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="phone-mockup">
-          <div class="phone-header">
-            <span class="phone-avatar">🤖</span>
-            <div class="phone-header-text">
-              <strong>Atendimento GCs</strong>
-              <span class="phone-status">online</span>
-            </div>
-          </div>
-          <div class="phone-chat">
-            <div class="chat-bubble chat-in bubble-1">Oi! Vi o cardápio, queria pedir 2 marmitas P</div>
-            <div class="chat-typing typing-1"><span></span><span></span><span></span></div>
-            <div class="chat-bubble chat-out bubble-2">Show! 2 marmitas P registradas ✅ Vai querer bebida também?</div>
-            <div class="chat-bubble chat-in bubble-3">Vou querer 1 refri lata</div>
-            <div class="chat-typing typing-2"><span></span><span></span><span></span></div>
-            <div class="chat-bubble chat-out bubble-4">Pedido fechado 🎉 Total: R$ 38,00 — pagamento na entrega. Já mandei pra cozinha!</div>
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Software sob medida</p>
+          <h1>
+            <span class="line"><span style="--i:0">Software que</span></span>
+            <span class="line"><span style="--i:1">cuida do seu</span></span>
+            <span class="line"><span style="--i:2" class="grad"><span class="rotator" data-words="atendimento|pedidos|caixa|negócio">atendimento</span></span></span>
+          </h1>
+          <p class="lead">
+            Automatizamos atendimento, organizamos pedidos e construímos sistemas sob medida —
+            sem pacote fechado que não serve pro seu negócio, sem enrolação.
+          </p>
+          <p class="hero-cta">
+            <a href="#servicos" class="btn-primary">Ver serviços <span class="btn-arrow">→</span></a>
+            <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="btn-secondary">Falar no WhatsApp</a>
+          </p>
+          <div class="hero-trust">
+            <span>Testado em cenário real</span>
+            <span>Sem API paga da Meta pra começar</span>
+            <span>Resposta direta, sem enrolação</span>
           </div>
         </div>
-        <span class="hero-visual-badge">🟢 Automação rodando agora</span>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <span class="phone-avatar">🤖</span>
+                <div class="phone-header-text">
+                  <strong>Atendimento GCs</strong>
+                  <span class="phone-status">online</span>
+                </div>
+              </div>
+              <div class="phone-chat">
+                <div class="chat-bubble chat-in">Oi! Vi o cardápio, queria pedir 2 marmitas P</div>
+                <div class="chat-bubble chat-out">Show! 2 marmitas P registradas ✅ Vai querer bebida também?</div>
+                <div class="chat-bubble chat-in">Vou querer 1 refri lata</div>
+                <div class="chat-bubble chat-out">Pedido fechado 🎉 Total: R$ 38,00 — pagamento na entrega. Já mandei pra cozinha!</div>
+              </div>
+            </div>
+          </div>
+          <span class="chip c1">🟢 Automação rodando agora</span>
+          <span class="chip c2">⚡ Pedido pronto em segundos</span>
+          <span class="chip c3">🍱 Cardápio sob medida</span>
+        </div>
+      </div>
+      <span class="scroll-hint" aria-hidden="true"></span>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="marquee" data-speed="0.7">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span>WhatsApp</span><i>✦</i><span>Typebot</span><i>✦</i><span>Automação</span><i>✦</i><span>Java</span><i>✦</i><span>JavaFX</span><i>✦</i><span>SQLite</span><i>✦</i><span>Impressão térmica</span><i>✦</i><span>Sistemas sob medida</span><i>✦</i><span>E-book</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="stats">
+          <div class="stat reveal"><strong data-count="30" data-suffix="+">30+</strong><span>anos de internet na bagagem do fundador</span></div>
+          <div class="stat reveal" style="--d:.1s"><strong data-count="35">35</strong><span>capítulos no método do e-book</span></div>
+          <div class="stat reveal" style="--d:.2s"><strong data-count="3">3</strong><span>soluções prontas pra usar</span></div>
+          <div class="stat reveal" style="--d:.3s"><strong data-count="0" data-suffix=" linhas">0 <em>linhas</em></strong><span>de código pra montar seu bot</span></div>
+        </div>
       </div>
     </section>
 
-    <section id="servicos" class="projetos-destaque">
-      <p class="eyebrow">Nossas soluções</p>
-      <h2>Serviços</h2>
-      <p class="section-intro">
-        Ferramentas reais, já testadas — não são protótipos de papel.
-      </p>
-      <div class="projects-grid">
-        <article class="project-card reveal">
-          <span class="project-icon" aria-hidden="true">💬</span>
-          <h3>Automação de Atendimento via WhatsApp</h3>
-          <p class="status"><span class="status-dot"></span>Disponível</p>
-          <div class="tags">
-            <span class="tag">Typebot</span>
-            <span class="tag">WhatsApp</span>
-            <span class="tag">Automação</span>
-          </div>
-          <p>
-            Fluxo de pedidos automatizado direto no WhatsApp do seu negócio, sem precisar
-            da aprovação da API oficial da Meta pra começar.
-          </p>
-          <div class="card-actions">
-            <a href="https://typebot.co/my-typebot-2c72x94" target="_blank" rel="noopener" class="btn-primary">Ver demonstração →</a>
-            <a href="servicos/atendimento-whatsapp.html" class="btn-secondary">Saber mais</a>
-          </div>
-        </article>
+    <section id="servicos" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Nossas soluções</p>
+          <h2>Ferramentas reais. <span class="grad">Já testadas.</span></h2>
+          <p class="section-intro">Não são protótipos de papel — cada solução nasce de um problema de negócio de verdade.</p>
+        </div>
 
-        <article class="project-card reveal">
-          <span class="project-icon" aria-hidden="true">🖥️</span>
-          <h3>Sistemas Sob Medida</h3>
-          <p class="status"><span class="status-dot"></span>Case real</p>
-          <div class="tags">
-            <span class="tag">Java</span>
-            <span class="tag">JavaFX</span>
-            <span class="tag">SQLite</span>
-          </div>
-          <p>
-            Sistema desktop de pedidos construído do zero pra um restaurante real — do
-            cadastro de clientes à impressão do comprovante na impressora térmica.
-          </p>
-          <div class="card-actions">
-            <a href="servicos/sistema-varandas.html" class="btn-primary">Ver case completo →</a>
-          </div>
-        </article>
+        <div class="projects-grid">
+          <article class="project-card reveal" data-tilt="5">
+            <span class="project-icon" aria-hidden="true">💬</span>
+            <h3>Automação de Atendimento via WhatsApp</h3>
+            <p class="status"><span class="status-dot"></span>Disponível</p>
+            <div class="tags"><span class="tag">Typebot</span><span class="tag">WhatsApp</span><span class="tag">Automação</span></div>
+            <p>Fluxo de pedidos automatizado direto no WhatsApp do seu negócio, sem precisar da aprovação da API oficial da Meta pra começar.</p>
+            <div class="card-actions">
+              <a href="https://typebot.co/my-typebot-2c72x94" target="_blank" rel="noopener" class="btn-primary">Ver demonstração <span class="btn-arrow">→</span></a>
+              <a href="servicos/atendimento-whatsapp.html" class="btn-secondary">Saber mais</a>
+            </div>
+          </article>
 
-        <article class="project-card project-card-featured reveal">
-          <span class="ribbon">📘 E-book</span>
-          <span class="project-icon" aria-hidden="true">📘</span>
-          <h3>Faça seu Bot de Vendas</h3>
-          <p class="status">R$ 67</p>
-          <div class="tags">
-            <span class="tag">E-book</span>
-            <span class="tag">Typebot</span>
-            <span class="tag">WhatsApp</span>
-          </div>
-          <p>
-            O método completo pra construir, do zero, um atendente automático que recebe
-            pedido e fecha a venda sozinho no WhatsApp — sem programar.
-          </p>
-          <div class="card-actions">
-            <a href="https://go.hotmart.com/K107569788A" target="_blank" rel="noopener" class="btn-primary">Comprar agora →</a>
-            <a href="produtos/ebook-bot-vendas.html" class="btn-secondary">Saiba mais</a>
-          </div>
-        </article>
+          <article class="project-card reveal" style="--d:.12s" data-tilt="5">
+            <span class="project-icon" aria-hidden="true">🖥️</span>
+            <h3>Sistemas Sob Medida</h3>
+            <p class="status"><span class="status-dot"></span>Case real</p>
+            <div class="tags"><span class="tag">Java</span><span class="tag">JavaFX</span><span class="tag">SQLite</span></div>
+            <p>Sistema desktop de pedidos construído do zero pra um restaurante real — do cadastro de clientes à impressão do comprovante na impressora térmica.</p>
+            <div class="card-actions">
+              <a href="servicos/sistema-varandas.html" class="btn-primary">Ver case completo <span class="btn-arrow">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card project-card-featured reveal" data-tilt="3">
+            <span class="ribbon">📘 E-book</span>
+            <div class="card-body">
+              <span class="project-icon" aria-hidden="true">📘</span>
+              <h3>Faça seu Bot de Vendas</h3>
+              <div class="price-tag">R$ 67</div>
+              <div class="tags"><span class="tag">E-book</span><span class="tag">Typebot</span><span class="tag">WhatsApp</span><span class="tag">35 capítulos</span></div>
+              <p>O método completo pra construir, do zero, um atendente automático que recebe pedido e fecha a venda sozinho no WhatsApp — sem programar.</p>
+            </div>
+            <div class="card-actions">
+              <a href="https://go.hotmart.com/K107569788A" target="_blank" rel="noopener" class="btn-primary">Comprar agora <span class="btn-arrow">→</span></a>
+              <a href="produtos/ebook-bot-vendas.html" class="btn-secondary">Saiba mais</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="contato">
-      <div class="contato-card reveal">
-        <p class="eyebrow">Vamos construir algo juntos?</p>
-        <h2>Bora conversar</h2>
-        <p class="section-intro">
-          Conta pra gente o que você precisa automatizar ou organizar no seu negócio.
-        </p>
-        <div class="contato-links">
-          <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="btn-primary">💬 WhatsApp</a>
-          <a href="mailto:gcsoenterprise@gmail.com" class="btn-secondary">✉️ gcsoenterprise@gmail.com</a>
+    <section id="cases" class="showcase">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Case em tela</p>
+          <h2>Sistema Varandas, <span class="grad">por dentro.</span></h2>
+          <p class="section-intro">Pedidos, pagamentos, relatório do dia e comprovante na impressora térmica — feito sob medida pra um restaurante de verdade. Arraste, ou deixe rolar.</p>
+        </div>
+      </div>
+
+      <div class="shot-row marquee" data-speed="0.55" data-dir="left" data-drag>
+        <div class="marquee-track"><div class="marquee-group">
+          <figure class="shot"><img src="servicos/varandas/tela-inicial.webp" width="900" height="729" alt="Tela inicial do Sistema Varandas, com os botões Novo Pedido, Relatório do Dia e Sair" loading="lazy"><figcaption><span>01 · Tela inicial</span><span>JavaFX</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-novo-pedido.webp" width="897" height="730" alt="Tela de novo pedido, com o cardápio do restaurante e o resumo do pedido em branco" loading="lazy"><figcaption><span>02 · Novo pedido</span><span>cardápio real</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-pedido-preenchido.webp" width="899" height="732" alt="Pedido montado com itens, total calculado e forma de pagamento selecionada" loading="lazy"><figcaption><span>03 · Pedido montado</span><span>total + pagamento</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-pedido-salvo.webp" width="898" height="728" alt="Mensagem de confirmação: pedido salvo com sucesso" loading="lazy"><figcaption><span>04 · Pedido salvo</span><span>SQLite</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-relatorio.webp" width="900" height="733" alt="Relatório do dia com totais por forma de pagamento e lista de pedidos" loading="lazy"><figcaption><span>05 · Relatório do dia</span><span>por pagamento</span></figcaption></figure>
+        </div></div>
+      </div>
+
+      <div class="shot-row marquee" data-speed="0.45" data-dir="right" data-drag>
+        <div class="marquee-track"><div class="marquee-group">
+          <figure class="shot"><img src="servicos/varandas/tela-relatorio.webp" width="900" height="733" alt="Relatório do dia com totais por forma de pagamento e lista de pedidos" loading="lazy"><figcaption><span>05 · Relatório do dia</span><span>por pagamento</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-pedido-salvo.webp" width="898" height="728" alt="Mensagem de confirmação: pedido salvo com sucesso" loading="lazy"><figcaption><span>04 · Pedido salvo</span><span>SQLite</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-pedido-preenchido.webp" width="899" height="732" alt="Pedido montado com itens, total calculado e forma de pagamento selecionada" loading="lazy"><figcaption><span>03 · Pedido montado</span><span>total + pagamento</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-novo-pedido.webp" width="897" height="730" alt="Tela de novo pedido, com o cardápio do restaurante e o resumo do pedido em branco" loading="lazy"><figcaption><span>02 · Novo pedido</span><span>cardápio real</span></figcaption></figure>
+          <figure class="shot"><img src="servicos/varandas/tela-inicial.webp" width="900" height="729" alt="Tela inicial do Sistema Varandas, com os botões Novo Pedido, Relatório do Dia e Sair" loading="lazy"><figcaption><span>01 · Tela inicial</span><span>JavaFX</span></figcaption></figure>
+        </div></div>
+      </div>
+      <p class="drag-hint" aria-hidden="true">← arraste · clique pra ampliar →</p>
+
+      <div class="showcase-cta">
+        <a href="servicos/sistema-varandas.html" class="btn-primary">Ver o case completo <span class="btn-arrow">→</span></a>
+      </div>
+    </section>
+
+    <section id="metodo" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Como trabalhamos</p>
+          <h2>Do problema ao <span class="grad">pedido saindo sozinho.</span></h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><h3>Conversa</h3><p>Entendemos como seu negócio funciona hoje — onde o tempo se perde e onde a venda escapa.</p></div>
+          <div class="step reveal" style="--d:.12s"><h3>Desenho</h3><p>Mapeamos cardápio, preços e regras de pedido num fluxo claro, antes de escrever qualquer coisa.</p></div>
+          <div class="step reveal" style="--d:.24s"><h3>Construção</h3><p>Montamos a ferramenta sob medida: bot, sistema ou os dois, do jeito que o seu fluxo pede.</p></div>
+          <div class="step reveal" style="--d:.36s"><h3>Teste real</h3><p>Só oferecemos depois de rodar em cenário de verdade. Nada de protótipo de vitrine.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container founder">
+        <div class="founder-photo reveal" data-tilt="8">
+          <img src="imagemM.webp" alt="Guilherme Cesar, fundador da GCs Enterprise" width="440" height="440" loading="lazy">
+          <span class="badge">👋 Quem toca a GCs</span>
+        </div>
+        <div class="reveal" style="--d:.15s">
+          <p class="eyebrow">Por trás da empresa</p>
+          <h2>Quem constrói é quem <span class="grad">testa na prática.</span></h2>
+          <p>A GCs Enterprise nasceu de um jeito direto de resolver problema: em vez de vender um pacote fechado, a gente constrói a <strong>ferramenta certa</strong> pro que o seu negócio realmente precisa.</p>
+          <p>Por trás está <strong>Guilherme Cesar</strong>, que mexe com internet há mais de 30 anos e hoje estrutura de forma técnica, em Análise e Desenvolvimento de Sistemas, aquilo que já construía na prática.</p>
+          <div class="sign">Guilherme Cesar<small>FUNDADOR · GCS ENTERPRISE</small></div>
+          <p style="margin-top:22px"><a href="sobre.html" class="btn-secondary">Conhecer a história <span class="btn-arrow">→</span></a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="contato-card reveal">
+          <p class="eyebrow">Vamos construir algo juntos?</p>
+          <h2>Bora <span class="grad">conversar</span></h2>
+          <p class="section-intro">Conta pra gente o que você precisa automatizar ou organizar no seu negócio.</p>
+          <div class="contato-links">
+            <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="btn-primary">💬 Chamar no WhatsApp <span class="btn-arrow">→</span></a>
+            <a href="mailto:gcsoenterprise@gmail.com" class="btn-secondary">✉️ gcsoenterprise@gmail.com</a>
+          </div>
         </div>
       </div>
     </section>
@@ -152,6 +251,7 @@
     <div class="container">
       <a href="https://wa.me/5515996978189" target="_blank" rel="noopener">WhatsApp</a>
       <a href="mailto:gcsoenterprise@gmail.com">gcsoenterprise@gmail.com</a>
+      <a href="https://guilhermecesars.github.io" target="_blank" rel="noopener">Portfólio do fundador</a>
       <p>&copy; 2026 GCs Enterprise</p>
     </div>
   </footer>

@@ -11,26 +11,38 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../logo-icon.png" type="image/png">
   <title>Sistema Varandas — GCs Enterprise</title>
+  <meta name="theme-color" content="#040908">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+  <div class="progress" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="cursor-ring" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
+
   <header class="site-header">
-    <div class="container nav-bar">
+    <div class="nav-bar">
       <a href="../index.html" class="logo" aria-label="GCs Enterprise — Início">
-        <img src="../logo-header.png" alt="GCs Enterprise" class="logo-mark" width="400" height="108" fetchpriority="high">
+        <img src="../logo-icon.png" alt="" width="30" height="32"><span>GCs <b>Enterprise</b></span>
       </a>
-      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="mainNav">
-        <a href="../index.html">Início</a>
+      <nav class="main-nav" id="mainNav" aria-label="Principal">
+        <a href="../index.html#servicos">Serviços</a>
+        <a href="../index.html#cases">Cases</a>
+        <a href="../index.html#metodo">Método</a>
         <a href="../sobre.html">Sobre</a>
         <a href="../index.html#contato">Contato</a>
       </nav>
+      <a href="https://wa.me/5515996978189" target="_blank" rel="noopener" class="nav-cta">Falar no WhatsApp</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main">
     <a href="../index.html#servicos" class="breadcrumb">← Voltar para serviços</a>
 
     <section class="case-header">
@@ -148,6 +160,7 @@
     <div class="container">
       <a href="https://wa.me/5515996978189" target="_blank" rel="noopener">WhatsApp</a>
       <a href="mailto:gcsoenterprise@gmail.com">gcsoenterprise@gmail.com</a>
+      <a href="https://guilhermecesars.github.io" target="_blank" rel="noopener">Portfólio do fundador</a>
       <p>&copy; 2026 GCs Enterprise</p>
     </div>
   </footer>
