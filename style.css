@@ -402,3 +402,11 @@ main.container > .hero .eyebrow { margin-bottom: 14px; }
 .roi-big small { font-size: 0.4em; color: var(--muted); letter-spacing: 0; font-weight: 500; -webkit-text-fill-color: var(--muted); }
 .roi-note { font-size: 0.78rem; color: var(--muted); margin: 16px 0 0; line-height: 1.5; }
 @media (max-width: 820px) { .roi { grid-template-columns: 1fr; } .roi-out { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* floating WhatsApp button (mobile) */
+.wa-fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 110; display: none; align-items: center; gap: 10px; padding: 14px 18px 14px 14px; border-radius: 999px; background: #25d366; color: #04210f; font-weight: 700; font-size: 0.95rem; box-shadow: 0 12px 34px rgba(37, 211, 102, 0.45), 0 4px 14px rgba(0, 0, 0, 0.5); transform: translateY(30px) scale(0.9); opacity: 0; pointer-events: none; transition: transform 0.4s var(--ease), opacity 0.3s; }
+.wa-fab svg { width: 26px; height: 26px; flex: none; }
+.wa-fab.show { transform: none; opacity: 1; pointer-events: auto; }
+.wa-fab.show::before { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); animation: fabPing 2.4s infinite; }
+@keyframes fabPing { 70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+@media (max-width: 820px) { .wa-fab { display: inline-flex; } }

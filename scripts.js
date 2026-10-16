@@ -457,7 +457,27 @@
     upd();
   }
 
+  /* ---------- floating WhatsApp button (mobile) ---------- */
+  function initFab() {
+    const a = document.createElement('a');
+    a.className = 'wa-fab';
+    a.href = 'https://wa.me/5515996978189?text=' + encodeURIComponent('Oi! Vim pelo site da GCs Enterprise e queria conversar.');
+    a.target = '_blank'; a.rel = 'noopener';
+    a.setAttribute('aria-label', 'Falar no WhatsApp');
+    a.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.1L2 22l5-1.6A9.9 9.9 0 1 0 12.04 2zm0 18.1c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3a8.1 8.1 0 1 1 6.7 3.6zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.5-.7-2.4-1.3-3.4-2.9-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.200s.9 2.500 1 2.700c.1.200 1.900 2.900 4.600 4 1.700.7 2.400.8 3.300.7.500-.1 1.500-.6 1.700-1.200.2-.6.2-1.100.2-1.200-.1-.2-.2-.2-.5-.4z"/></svg><span>WhatsApp</span>';
+    document.body.appendChild(a);
+    const target = document.getElementById('contato');
+    let nearContact = false;
+    const update = () => a.classList.toggle('show', scrollY > 320 && !nearContact);
+    if (target && 'IntersectionObserver' in window) {
+      new IntersectionObserver((es) => { nearContact = es[0].isIntersecting; update(); }, { threshold: 0.25 }).observe(target);
+    }
+    update();
+    addEventListener('scroll', update, { passive: true });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initFab();
     initRoi();
     initNav();
     initScroll();
