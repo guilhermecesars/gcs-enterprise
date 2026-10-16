@@ -437,7 +437,28 @@
     });
   }
 
+  /* ---------- ROI calculator ---------- */
+  function initRoi() {
+    const box = $('.roi');
+    if (!box) return;
+    const g = (id) => $('#' + id, box);
+    const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    const upd = () => {
+      const ped = +g('r-ped').value, min = +g('r-min').value, hora = +g('r-hora').value, auto = +g('r-auto').value;
+      const horas = Math.round((ped * min * 30 * (auto / 100)) / 60);
+      const valor = horas * hora;
+      g('v-ped').textContent = ped; g('v-min').textContent = min + ' min';
+      g('v-hora').textContent = brl(hora); g('v-auto').textContent = auto + '%';
+      g('o-horas').textContent = horas; g('o-valor').textContent = brl(valor);
+      const msg = `Oi! Usei a calculadora do site: ${ped} atendimentos/dia, ${min} min cada. Estimei ~${horas}h/mês (${brl(valor)}) que um bot poderia devolver. Quero conversar sobre automatizar o meu atendimento.`;
+      g('roi-cta').href = 'https://wa.me/5515996978189?text=' + encodeURIComponent(msg);
+    };
+    $$('input', box).forEach((i) => i.addEventListener('input', upd));
+    upd();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initRoi();
     initNav();
     initScroll();
     initPointer();
