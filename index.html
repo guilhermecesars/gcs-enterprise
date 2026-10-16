@@ -200,6 +200,36 @@
       </div>
     </section>
 
+    <section id="economia" class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Calculadora</p>
+          <h2>Quanto tempo o seu <span class="grad">atendimento consome?</span></h2>
+          <p class="section-intro">Mexa nos controles e veja uma estimativa do que um bot no WhatsApp poderia devolver pra você.</p>
+        </div>
+        <div class="roi reveal">
+          <div class="roi-inputs">
+            <label for="r-ped">Pedidos/atendimentos por dia <b id="v-ped"></b></label>
+            <input id="r-ped" type="range" min="5" max="150" value="40" step="5">
+            <label for="r-min">Minutos gastos por atendimento <b id="v-min"></b></label>
+            <input id="r-min" type="range" min="1" max="15" value="4" step="1">
+            <label for="r-hora">Quanto vale sua hora <b id="v-hora"></b></label>
+            <input id="r-hora" type="range" min="10" max="150" value="30" step="5">
+            <label for="r-auto">% do atendimento que o bot resolve <b id="v-auto"></b></label>
+            <input id="r-auto" type="range" min="30" max="90" value="70" step="5">
+          </div>
+          <div class="roi-out">
+            <p class="roi-label">Tempo devolvido por mês</p>
+            <p class="roi-big"><span id="o-horas">0</span><small> horas</small></p>
+            <p class="roi-label">Equivale a</p>
+            <p class="roi-big grad"><span id="o-valor">R$ 0</span><small> /mês</small></p>
+            <a id="roi-cta" class="btn-primary" href="https://wa.me/5515996978189" target="_blank" rel="noopener">Quero isso no meu negócio <span class="btn-arrow">→</span></a>
+            <p class="roi-note">Estimativa ilustrativa (30 dias/mês), baseada nos números que você informou. O resultado real depende do seu fluxo de atendimento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="metodo" class="section">
       <div class="container">
         <div class="section-head reveal">
