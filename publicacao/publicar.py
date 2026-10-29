@@ -82,18 +82,40 @@ def publicar(post):
     else:
         raise RuntimeError(f"tipo desconhecido: {post['tipo']!r}")
 
+    # As vezes o Instagram diz que o container esta FINISHED e, no media_publish,
+    # responde "Media Not Found" (subcodigo 2207006). Nesse caso o post nao saiu:
+    # tenta de novo no mesmo container e, se continuar, cria outro.
+    for tentativa in range(3):
+        container = criar_container(params)
+        for _ in range(2):
+            try:
+                return api("POST", f"{USUARIO}/media_publish", {"creation_id": container})["id"]
+            except RuntimeError as e:
+                if not pode_repetir(e):
+                    raise
+                erro = e
+                print(f"media_publish falhou (tentativa {tentativa + 1}), tentando de novo: {e}")
+                time.sleep(20)
+    raise erro
+
+
+def criar_container(params):
     container = api("POST", f"{USUARIO}/media", params)["id"]
     # Video leva alguns minutos para ser processado pelo Instagram.
     for _ in range(40):
         status = api("GET", container, {"fields": "status_code"}).get("status_code")
         if status == "FINISHED":
-            break
+            return container
         if status in ("ERROR", "EXPIRED"):
             raise RuntimeError(f"container {container}: {status}")
         time.sleep(15)
-    else:
-        raise RuntimeError(f"container {container}: tempo esgotado")
-    return api("POST", f"{USUARIO}/media_publish", {"creation_id": container})["id"]
+    raise RuntimeError(f"container {container}: tempo esgotado")
+
+
+def pode_repetir(erro):
+    # So repete o "Media Not Found" e os erros que o Instagram marca como passageiros.
+    texto = str(erro)
+    return "2207006" in texto or '"is_transient":true' in texto
 
 
 def link(media_id):
